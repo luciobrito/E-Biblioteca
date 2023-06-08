@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import {estilo} from '../estilo';
 var dt = new Date();
 //Função para exibir a mensagem conforme o horário do Usuário
 function mensagemHorario(horas){
@@ -23,7 +23,7 @@ function mensagemHorario(horas){
 export function Home({navigation}){
   return(
     <View>
-    <Text> {mensagemHorario(dt.getHours())} </Text>
+    <Text style={estilo.tituloInicio}> {mensagemHorario(dt.getHours())} </Text>
     </View>
   )
 }

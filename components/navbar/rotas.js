@@ -37,7 +37,10 @@ export default function App() {
         })}>
         <Tab.Screen name="Home" component={Home} options={{title: "Início"}} />
         
-        <Tab.Screen name="Buscar" component={RotasBuscar} options={{ headerShown: false }}/>
+        <Tab.Screen name="Buscar" component={RotasBuscar} options={{ headerShown: false, headerTitleStyle: {
+        fontFamily: "cursive",
+        fontWeight: "200"
+      }}}/>
         <Tab.Screen name="MnhBib" component={RotasMnhBib} options={{headerShown: false, title:"Minha E-Biblioteca"}}/>
       </Tab.Navigator>
     </NavigationContainer>

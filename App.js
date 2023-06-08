@@ -4,10 +4,20 @@ import Constants from 'expo-constants';
 import Rotas from './components/navbar/rotas';
 import * as NavigationBar from 'expo-navigation-bar';
 NavigationBar.setBackgroundColorAsync("white");
+import {useFonts} from 'expo-font';
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    'RobotoSlab' : require('./assets/fonts/Roboto_Slab/static/RobotoSlab-Regular.ttf'),
+  });
+  if(!fontsLoaded){
+    return (
+      <><Text>Carregando...</Text></>
+    )
+  }
+  else{
   return (
     <>
     <Rotas></Rotas>
     </>
-  );
+  );}
 }

@@ -12,6 +12,10 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator         screenOptions={({ route }) => ({
+                  tabBarStyle:{
+                    backgroundColor: '#F5F5DC',
+                    borderTopWidth: 0,
+                  },
           tabBarIcon: ({ focused, color, size }) => {
             //Opções da TabBar 
             let iconName;

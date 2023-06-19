@@ -5,6 +5,8 @@ import {useFonts} from 'expo-font';
 var corFundo = "#F5F5DC";
 var tmnTitulo = 40;
 var tmnSubT = 30;
+var marginPad = 10;
+var paddingPad = 10;
 const btn = {
 margin: 10,
 padding: 10,
@@ -31,7 +33,8 @@ export function Fontes(){
 export const estilo = StyleSheet.create({
     background: {
         backgroundColor: corFundo,
-        fontFamily: 'RobotoSlab'
+        fontFamily: 'RobotoSlab',
+        height: '100%'
     },
     subtituloBusca:{
         ...subtitulo,
@@ -69,5 +72,21 @@ export const estilo = StyleSheet.create({
     },
     input:{
 
+    },
+    bscrcont:{
+      borderWidth:1,
+
+      margin: marginPad,
+      height: 1000
+    },
+    bscrcontLivro:{
+      borderWidth: 1,
+      margin: marginPad - 5,
+
+    },
+    bscrImg:{
+      width: '100%',
+      height: '100%',
+      resizeMode: 'contain'
     }
 })

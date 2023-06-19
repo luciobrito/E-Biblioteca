@@ -5,15 +5,8 @@ export const musRock = [
   {nome: 'Smells Like Teen Spirit', artista: 'Nirvana'},
   {nome: 'Can\'t Stop', artista:'Red Hot Chili Peppers'}
 ];
-
-export const musIndie =[
-  {nome: 'Pumped up Kicks',artista: 'Foster The People'},
-  {nome: 'No Surprises', artista: 'Radiohead'},
-  {nome: 'Creep', artista: 'Radiohead'}
-];
-
-export const lancamentos = [
-  {nome: '1984', artista: 'George Orwell'},
-  {nome: 'The Man In The High Castle', artista: 'Philip K. Dick'},
-  {nome: '', artista: ''}
-];
+export const livrosBuscar = [
+  {nome: 'O Iluminado', autor: 'Stephen King', capa:'https://m.media-amazon.com/images/I/8147kKLLvOL._AC_UL400_.jpg'},
+  {nome: 'O Instituto', autor: 'Stephen King', capa:'https://m.media-amazon.com/images/I/4177Wy8Lo5L._SX327_BO1,204,203,200_.jpg'},
+  
+]

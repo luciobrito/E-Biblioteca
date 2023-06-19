@@ -2,44 +2,68 @@ import * as React from "react";
 import {
   Text,
   View,
+  Image,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  FlatList
 } from "react-native";
 import Constants from "expo-constants";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Lancamentos } from "../pageBuscar/lancamentos";
 import { MaisVend } from "../pageBuscar/maisVendidos";
 import { Recomendados } from "../pageBuscar/recomendados";
-import {estilo, Fontes} from "../estilo";
-import {useFonts} from 'expo-font';
+import { estilo, Fontes } from "../estilo";
+import { useFonts } from "expo-font";
+import { livrosBuscar } from "../catalogo";
+import { SafeAreaView } from "react-native-safe-area-context";
 export function Buscar({ navigation }) {
   const [fontsLoaded] = useFonts({
-    'RobotoSlabBold' : require('../../assets/fonts/Roboto_Slab/static/RobotoSlab-Bold.ttf'),
+    RobotoSlabBold: require("../../assets/fonts/Roboto_Slab/static/RobotoSlab-Bold.ttf"),
   });
-  if(!fontsLoaded){
-    return(
-      <><Text>Carregando...</Text></>
-    )
-  }
-  else{
-  return (
-    <ScrollView style={estilo.background}>
+  if (!fontsLoaded) {
+    return (
+      <>
+        <Text>Carregando...</Text>
+      </>
+    );
+  } else {
+    return (
+      <ScrollView style={estilo.background} horizontal={false}>
+        <Text style={estilo.subtituloBusca}>
+          Procurando algo novo para ler?
+        </Text>
+        <TextInput
+          style={estilo.busca}
+          placeholder="Procure por Titulo,ISBN,Autor"
+        ></TextInput>
+        <TouchableOpacity
+          style={estilo.btnBusca}
+          onPress={() => navigation.navigate("lancamentos")}
+        >
+          <Text style={estilo.btnTxt}>Lançamentos</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={estilo.btnBusca}
+          onPress={() => navigation.navigate("maisVend")}
+        >
+          <Text style={estilo.btnTxt}>Mais Vendidos</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={estilo.btnBusca}
+          onPress={() => navigation.navigate("recomendados")}
+        >
+          <Text style={estilo.btnTxt}>Recomendados</Text>
+        </TouchableOpacity>
+  
+        <FlatList
+ data={livrosBuscar}
+ renderItem={({item, index}) => <ScrollView style={{height:1000}} horizontal={true}><Text>{item.nome}</Text><Image source={{uri:item.capa}} style={estilo.bscrImg}/></ScrollView>}
+/>
 
-      <Text style={estilo.subtituloBusca}>Procurando algo novo para ler?</Text>
-      <TextInput style={estilo.busca} placeholder="Procure por Titulo,ISBN,Autor" ></TextInput>
-      <TouchableOpacity style={estilo.btnBusca} onPress={() => navigation.navigate("lancamentos")}>
-        <Text style={estilo.btnTxt}>Lançamentos</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={estilo.btnBusca} onPress={() => navigation.navigate("maisVend")}>
-        <Text style={estilo.btnTxt}>Mais Vendidos</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={estilo.btnBusca} onPress={() => navigation.navigate("recomendados")}>
-        <Text style={estilo.btnTxt}>Recomendados</Text>
-      </TouchableOpacity>
-    </ScrollView>
-  );
+      </ScrollView>
+    );
   }
 }
 const Stack = createStackNavigator();
@@ -50,34 +74,42 @@ export function RotasBuscar() {
       <Stack.Screen
         name="buscar"
         component={Buscar}
-        options={{ title: "Buscar" ,      headerTitleStyle: {
-          fontFamily: fonte,
-
-        }}}
+        options={{
+          title: "Buscar",
+          headerTitleStyle: {
+            fontFamily: fonte,
+          },
+        }}
       />
       <Stack.Screen
         name="lancamentos"
         component={Lancamentos}
-        options={{ title: "Lançamentos"  ,headerTitleStyle: {
-          fontFamily: fonte,
-
-        }}}
+        options={{
+          title: "Lançamentos",
+          headerTitleStyle: {
+            fontFamily: fonte,
+          },
+        }}
       />
       <Stack.Screen
         name="maisVend"
         component={MaisVend}
-        options={{ title: "Mais Vendidos",headerTitleStyle: {
-          fontFamily: fonte,
-
-        } }}
+        options={{
+          title: "Mais Vendidos",
+          headerTitleStyle: {
+            fontFamily: fonte,
+          },
+        }}
       />
       <Stack.Screen
         name="recomendados"
         component={Recomendados}
-        options={{ title: "Recomendados" ,headerTitleStyle: {
-          fontFamily: fonte,
-
-        }}}
+        options={{
+          title: "Recomendados",
+          headerTitleStyle: {
+            fontFamily: fonte,
+          },
+        }}
       />
     </Stack.Navigator>
   );

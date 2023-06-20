@@ -13,8 +13,13 @@ export default function App() {
     <NavigationContainer>
       <Tab.Navigator         screenOptions={({ route }) => ({
                   tabBarStyle:{
-                    backgroundColor: '#F5F5DC',
-                    borderTopWidth: 0,
+                    backgroundColor: '#ede9c2',
+                    borderTopWidth: 0.5,
+                    borderTopColor: 'black'
+                  },
+                  tabBarLabelStyle:{
+                    fontFamily: 'RobotoSlabBold',
+                    fontSize: 12
                   },
           tabBarIcon: ({ focused, color, size }) => {
             //Opções da TabBar 
@@ -38,6 +43,7 @@ export default function App() {
           },
           tabBarActiveTintColor: '#4f3409',
           tabBarInactiveTintColor: '#ab9a7e',
+        
         })}>
         <Tab.Screen name="Home" component={Home} options={{title: "Início"}} />
         

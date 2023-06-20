@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import Rotas from './components/navbar/rotas';
 import * as NavigationBar from 'expo-navigation-bar';
-NavigationBar.setBackgroundColorAsync("#F5F5DC");
+NavigationBar.setBackgroundColorAsync("#ede9c2");
 import {useFonts} from 'expo-font';
 export default function App() {
   const [fontsLoaded] = useFonts({

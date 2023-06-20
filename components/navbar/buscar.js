@@ -7,7 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   TextInput,
-  FlatList
+  FlatList,
 } from "react-native";
 import Constants from "expo-constants";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -30,7 +30,12 @@ export function Buscar({ navigation }) {
     );
   } else {
     return (
-      <ScrollView style={estilo.background} horizontal={false} overScrollMode="never" endFillColor="#000">
+      <ScrollView
+        style={estilo.background}
+        horizontal={false} //Define o ScrollView como 'Não-Horizontal'
+        overScrollMode="never" //Remove o OverScroll (Aquela ondinha que faz no Android quando você rola o máximo da tela)
+        endFillColor="#000" 
+      >
         <Text style={estilo.subtituloBusca}>
           Procurando algo novo para ler?
         </Text>
@@ -56,12 +61,45 @@ export function Buscar({ navigation }) {
         >
           <Text style={estilo.btnTxt}>Recomendados</Text>
         </TouchableOpacity>
-        <View >
-        <FlatList
- data={livrosBuscar}
- renderItem={({item, index}) => <View horizontal={true} style={estilo.bscrcont}><Image source={{uri:item.capa}} style={estilo.bscrImg}/><Text>{item.nome}{"\n"}{item.autor}</Text></View>}
-/>
-</View>
+        
+        <SafeAreaView
+        //Importante para o numColumns={n} funcionar.
+        >
+          <FlatList
+            data={livrosBuscar}
+            renderItem={({ item, index }) => (
+              <View style={estilo.bscrcont}>
+                <Image source={{ uri: item.capa }} style={estilo.bscrImg} />
+                <Text
+                  style={{
+                    textAlign: "center",
+                    fontFamily: "RobotoSlabBold",
+                    color: "#634107",
+                    marginTop: 5,
+                    width: "100%",
+                    fontSize: 15,
+                    padding: 3
+                  }}
+                >
+                  {item.nome}
+                  {"\n"}
+                  <Text
+                    style={{
+                      textAlign: "center",
+                      fontFamily: "RobotoSlabBold",
+                      color: "#5e5e5d",
+                      fontSize: 10
+                    }}
+                  >
+                    {item.autor}
+                  </Text>
+                </Text>
+              </View>
+            )}
+            //Número de Colunas da lista,importante para fazer o efeito de grade.
+            numColumns={3}
+          />
+        </SafeAreaView>
       </ScrollView>
     );
   }
@@ -72,62 +110,59 @@ export function RotasBuscar() {
     RobotoSlabBold: require("../../assets/fonts/Roboto_Slab/static/RobotoSlab-Bold.ttf"),
   });
   const fonte = "RobotoSlabBold";
-  if(!fontsLoaded){
-    return(
-      <Text>Carregando...</Text>
-    )
+  //Se as fontes não forem carregadas, o App também não carrega.
+  if (!fontsLoaded) {
+    return <Text>Carregando...</Text>;
+  } else {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name="buscar"
+          component={Buscar}
+          options={{
+            title: "Buscar",
+            headerTitleStyle: {
+              fontFamily: fonte,
+              textAlign: "left",
+            },
+            headerStyle: {
+              backgroundColor: "#ede9c2",
+              borderBottomWidth: 0.5,
+              borderBottomColor: "black",
+            },
+          }}
+        />
+        <Stack.Screen
+          name="lancamentos"
+          component={Lancamentos}
+          options={{
+            title: "Lançamentos",
+            headerTitleStyle: {
+              fontFamily: fonte,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="maisVend"
+          component={MaisVend}
+          options={{
+            title: "Mais Vendidos",
+            headerTitleStyle: {
+              fontFamily: fonte,
+            },
+          }}
+        />
+        <Stack.Screen
+          name="recomendados"
+          component={Recomendados}
+          options={{
+            title: "Recomendados",
+            headerTitleStyle: {
+              fontFamily: fonte,
+            },
+          }}
+        />
+      </Stack.Navigator>
+    );
   }
-  else{
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="buscar"
-        component={Buscar}
-        options={{
-          title: "Buscar",
-          headerTitleStyle: {
-            fontFamily: fonte,
-            textAlign: 'left'
-          },
-          headerStyle:{
-            backgroundColor: '#ede9c2',
-            borderBottomWidth: 0.5,
-            borderBottomColor: 'black',
-            
-          }
-        }}
-      />
-      <Stack.Screen
-        name="lancamentos"
-        component={Lancamentos}
-        options={{
-          title: "Lançamentos",
-          headerTitleStyle: {
-            fontFamily: fonte,
-          },
-        }}
-      />
-      <Stack.Screen
-        name="maisVend"
-        component={MaisVend}
-        options={{
-          title: "Mais Vendidos",
-          headerTitleStyle: {
-            fontFamily: fonte,
-          },
-        }}
-      />
-      <Stack.Screen
-        name="recomendados"
-        component={Recomendados}
-        options={{
-          title: "Recomendados",
-          headerTitleStyle: {
-            fontFamily: fonte,
-          },
-        }}
-      />
-    </Stack.Navigator>
-  );
-      }
 }

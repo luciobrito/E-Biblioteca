@@ -42,6 +42,7 @@ export const estilo = StyleSheet.create({
         marginLeft: 15,
         marginTop: 10
     },
+    //Barra de Busca
     busca:{
       backgroundColor: 'white',
       margin: 15,
@@ -64,6 +65,7 @@ export const estilo = StyleSheet.create({
     texto:{
       fontFamily: 'RobotoSlab'
     },
+    //Texto dos Botões
     btnTxt:{
       color: '#422d09',
       fontFamily: 'RobotoSlabBold',
@@ -73,15 +75,18 @@ export const estilo = StyleSheet.create({
     input:{
 
     },
+    //Conteúdos da aba buscar, os livros que são exibidos abaixo dos botões
     bscrcont:{
-      margin: 10,
-      flex: 1,
+      margin: 5,
+      flex: 3,
       flexDirection: 'column',
-      justifyContent: 'center',
+      padding: 10,
+
       alignItems: 'center',
       flexWrap: 'wrap',
-      margin: 10,
-      
+      alignContent: 'center',
+
+
       
     },
     bscrcontLivro:{
@@ -89,14 +94,16 @@ export const estilo = StyleSheet.create({
       margin: marginPad - 5,
 
     },
+    //Imagens da aba buscar, os livros.
     bscrImg:{
       
-      width: '40%',
+      width: '90%',
       height: undefined,
       aspectRatio: 0.6,
-      backgroundColor: 'green',
-      borderRadius: 10,
+      backgroundColor: 'gray',
+      borderRadius: 3,
       resizeMode: 'cover',
-      borderWidth: 1
+      borderWidth: 2,
+      borderColor: 'black'
     }
 })

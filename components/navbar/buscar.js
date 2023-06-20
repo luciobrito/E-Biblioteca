@@ -30,7 +30,7 @@ export function Buscar({ navigation }) {
     );
   } else {
     return (
-      <ScrollView style={estilo.background} horizontal={false}>
+      <ScrollView style={estilo.background} horizontal={false} overScrollMode="never" endFillColor="#000">
         <Text style={estilo.subtituloBusca}>
           Procurando algo novo para ler?
         </Text>
@@ -56,19 +56,28 @@ export function Buscar({ navigation }) {
         >
           <Text style={estilo.btnTxt}>Recomendados</Text>
         </TouchableOpacity>
-  
+        <View >
         <FlatList
  data={livrosBuscar}
- renderItem={({item, index}) => <ScrollView style={{height:1000}} horizontal={true}><Text>{item.nome}</Text><Image source={{uri:item.capa}} style={estilo.bscrImg}/></ScrollView>}
+ renderItem={({item, index}) => <View horizontal={true} style={estilo.bscrcont}><Image source={{uri:item.capa}} style={estilo.bscrImg}/><Text>{item.nome}{"\n"}{item.autor}</Text></View>}
 />
-
+</View>
       </ScrollView>
     );
   }
 }
 const Stack = createStackNavigator();
 export function RotasBuscar() {
+  const [fontsLoaded] = useFonts({
+    RobotoSlabBold: require("../../assets/fonts/Roboto_Slab/static/RobotoSlab-Bold.ttf"),
+  });
   const fonte = "RobotoSlabBold";
+  if(!fontsLoaded){
+    return(
+      <Text>Carregando...</Text>
+    )
+  }
+  else{
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -78,7 +87,14 @@ export function RotasBuscar() {
           title: "Buscar",
           headerTitleStyle: {
             fontFamily: fonte,
+            textAlign: 'left'
           },
+          headerStyle:{
+            backgroundColor: '#ede9c2',
+            borderBottomWidth: 0.5,
+            borderBottomColor: 'black',
+            
+          }
         }}
       />
       <Stack.Screen
@@ -113,4 +129,5 @@ export function RotasBuscar() {
       />
     </Stack.Navigator>
   );
+      }
 }

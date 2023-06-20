@@ -74,10 +74,15 @@ export const estilo = StyleSheet.create({
 
     },
     bscrcont:{
-      borderWidth:1,
-
-      margin: marginPad,
-      height: 1000
+      margin: 10,
+      flex: 1,
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexWrap: 'wrap',
+      margin: 10,
+      
+      
     },
     bscrcontLivro:{
       borderWidth: 1,
@@ -85,8 +90,13 @@ export const estilo = StyleSheet.create({
 
     },
     bscrImg:{
-      width: '100%',
-      height: '100%',
-      resizeMode: 'contain'
+      
+      width: '40%',
+      height: undefined,
+      aspectRatio: 0.6,
+      backgroundColor: 'green',
+      borderRadius: 10,
+      resizeMode: 'cover',
+      borderWidth: 1
     }
 })
